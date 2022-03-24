@@ -21,9 +21,11 @@ def writeResultsInExcel(arrayEquipes, arrayColleges):
     ws.title = "Répartition par équipe"
 
     for equipe in arrayEquipes:
+        ws.append([equipe.nom])
         for key, value in equipe.effectifs.items():
             if value > 0:
                 ws.append([key, value])
+        ws.append([])
 
     """ Deuxième page : par équipe """
     ws = wb.create_sheet(title="Répartition par collège")
