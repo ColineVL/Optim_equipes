@@ -1,9 +1,10 @@
+from re import A
 import sys, os
 
 
 from initialisation import init, readExcel
 from helpers import updateIndexEquipe
-from postTraitement import simplePrint
+from postTraitement import simplePrint, writeResultsInExcel
 
 """ Premier essai de code """
 
@@ -42,6 +43,7 @@ def main():
 
     """Affichage des résultats"""
     simplePrint(arrayEquipes, arrayColleges)
+    writeResultsInExcel(arrayEquipes, arrayColleges)
 
     """Vérification"""
     # Aucune équipe ne dépasse le max
