@@ -21,5 +21,5 @@ def readExcel():
     assert len(noms) == len(eleves)
 
     arrayColleges = [College(noms[i], eleves[i]) for i in range(len(noms))]
-    arrayColleges.sort()
+    arrayColleges.sort(reverse=True)
     return arrayColleges
