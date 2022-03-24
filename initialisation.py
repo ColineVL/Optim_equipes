@@ -16,7 +16,7 @@ def readExcel():
     wb = load_workbook("./effectifs.xlsx", data_only=True)
     sheet = wb[wb.sheetnames[0]]
     noms = [cell.value for cell in sheet["A"][1:]]
-    eleves = [cell.value for cell in sheet["B"][1:]]
+    eleves = [int(cell.value) for cell in sheet["B"][1:]]
 
     assert len(noms) == len(eleves)
 
