@@ -11,7 +11,7 @@ Pas trop d'écart entre les équipes en termes de nombre d'élèves.
 def main():
     """Initialisation"""
     arrayColleges = readExcel()
-    nbEquipes = 2
+    nbEquipes = 4
     arrayEquipes, maxParEquipe = init(arrayColleges, nbEquipes)
 
     """Boucle de calcul"""
