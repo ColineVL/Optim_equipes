@@ -10,10 +10,12 @@ class Equipe:
         Un dictionnaire contenant pour chaque établissement, le nombre de ses élèves dans cette équipe
     """
 
-    def __init__(self, nom):
+    def __init__(self, nom, arrayColleges):
         self.nom = nom
         self.nbEleves = 0
         self.effectifs = {}
+        for col in arrayColleges:
+            self.effectifs[col.nom] = 0
 
     def __repr__(self):
         return f"Equipe {self.nom} : {self.nbEleves} élèves"
@@ -25,10 +27,9 @@ class Equipe:
         return sum([value for value in self.effectifs.values()])
 
     def setEleves(self, college, nombre):
-        if college.nom not in self.effectifs:
-            self.effectifs[college.nom] = 0
-
         self.effectifs[college.nom] += nombre
+
+        college.elevesRestants -= nombre
 
 
 class College:
@@ -41,6 +42,8 @@ class College:
         Nom de l'établissement scolaire
     nbEleves : int
        Nombre d'élèves présents à l'événement
+    elevesRestants: int
+        Nombre d'élèves pas encore affectés à une équipe
     repartition: dict
         Répartition des élèves selon les équipes
     """
@@ -49,6 +52,7 @@ class College:
         self.nom = nom
         self.nbEleves = nbEleves
         self.repartition = {}
+        self.elevesRestants = nbEleves
 
     def __repr__(self):
         return f"{self.nom} : {self.nbEleves} élèves"
