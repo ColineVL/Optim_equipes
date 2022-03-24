@@ -1,12 +1,11 @@
-from re import A
-import sys, os
-
-
 from initialisation import init, readExcel
-from helpers import updateIndexEquipe
 from postTraitement import simplePrint, writeResultsInExcel
 
-""" Premier essai de code """
+""" 
+Répartir des élèves dans des équipes. 
+Pas d'élève seul dans une équipe, sans camarades de son établissement.
+Pas trop d'écart entre les équipes en termes de nombre d'élèves.
+"""
 
 
 def main():
@@ -21,8 +20,6 @@ def main():
         currentIndexEquipe = 0
         while col.elevesRestants > 0:
 
-            if currentIndexEquipe == 0:
-                print("On est à l'équipe 0")
             equipe = arrayEquipes[currentIndexEquipe]
 
             # Si il reste de la place dans l'équipe, on peut la remplir
@@ -39,10 +36,9 @@ def main():
                     equipe.setEleves(col, 2)
 
             # On passe à l'équipe suivante
-            currentIndexEquipe = updateIndexEquipe(currentIndexEquipe, nbEquipes)
+            currentIndexEquipe = (currentIndexEquipe + 1) % nbEquipes
 
     """Affichage des résultats"""
-    simplePrint(arrayEquipes, arrayColleges)
     writeResultsInExcel(arrayEquipes, arrayColleges)
 
     """Vérification"""

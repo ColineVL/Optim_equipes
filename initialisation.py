@@ -1,4 +1,3 @@
-import numpy as np
 from openpyxl import load_workbook
 import math
 from modelisation import College, Equipe
