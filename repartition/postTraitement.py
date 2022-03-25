@@ -34,5 +34,5 @@ def writeResultsInExcel(arrayEquipes, arrayColleges):
 
     """ Enregistrer """
     timestamp = datetime.now().strftime("%H%M%S")
-    dest_filename = f"results_{timestamp}.xlsx"
+    dest_filename = f"repartition_{timestamp}.xlsx"
     wb.save(filename=dest_filename)

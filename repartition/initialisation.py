@@ -1,6 +1,6 @@
 from openpyxl import load_workbook
 import math
-from .modelisation import College, Equipe
+from modelisation import College, Equipe
 
 
 def init(arrayColleges, nbEquipes):

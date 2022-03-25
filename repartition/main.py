@@ -1,5 +1,5 @@
-from .initialisation import init, readExcel
-from .postTraitement import writeResultsInExcel
+from initialisation import init, readExcel
+from postTraitement import writeResultsInExcel
 
 """ 
 Répartir des élèves dans des équipes. 
