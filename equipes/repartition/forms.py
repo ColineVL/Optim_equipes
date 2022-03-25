@@ -14,3 +14,7 @@ class UploadBookForm(forms.ModelForm):
             "title",
             "pdf",
         )
+
+
+class UploadFileForm(forms.Form):
+    file = forms.FileField()

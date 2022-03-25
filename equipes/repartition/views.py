@@ -3,7 +3,8 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from django.shortcuts import render
-from repartition.forms import Formulaire, UploadBookForm
+from repartition.forms import Formulaire, UploadBookForm, UploadFileForm
+from django.core.files.storage import FileSystemStorage
 
 
 def repartitionEquipes(request):
@@ -30,3 +31,17 @@ def upload_file(request):
     else:
         form = UploadBookForm()
     return render(request, "repartition/upload.html", {"form": form})
+
+
+def simple_upload(request):
+    if request.method == "POST" and request.FILES["myfile"]:
+        myfile = request.FILES["myfile"]
+        fs = FileSystemStorage()
+        filename = fs.save(myfile.name, myfile)
+        uploaded_file_url = fs.url(filename)
+        return render(
+            request,
+            "repartition/simpleUpload.html",
+            {"uploaded_file_url": uploaded_file_url},
+        )
+    return render(request, "repartition/simpleUpload.html")
