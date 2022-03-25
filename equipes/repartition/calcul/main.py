@@ -1,5 +1,5 @@
-from initialisation import init, readExcel
-from postTraitement import writeResultsInExcel
+from .initialisation import init, readExcel
+from .postTraitement import writeResultsInExcel
 
 """ 
 Répartir des élèves dans des équipes. 
@@ -8,10 +8,9 @@ Pas trop d'écart entre les équipes en termes de nombre d'élèves.
 """
 
 
-def main():
+def main(nbEquipes):
     """Initialisation"""
     arrayColleges = readExcel()
-    nbEquipes = 4
     arrayEquipes, maxParEquipe = init(arrayColleges, nbEquipes)
 
     """Boucle de calcul"""

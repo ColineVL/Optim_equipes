@@ -6,15 +6,23 @@ import os
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
+from repartition.calcul.main import main
 
 
 def simple_upload(request):
     if request.method == "POST" and request.FILES["myfile"]:
+        # On récupère les données
         myfile = request.FILES["myfile"]
-        nbEquipes = request.POST.get("nbEquipes")
+        # On enregistre le fichier
         fs = FileSystemStorage()
         filename = fs.save(myfile.name, myfile)
         uploaded_file_url = fs.url(filename)
+        # On note le nombre d'équipes
+        nbEquipes = request.POST.get("nbEquipes")
+        nbEquipes = int(nbEquipes)
+        # On compute le excel résultat
+        main(nbEquipes)
+        # On renvoie
         return render(
             request,
             "repartition/simpleUpload.html",

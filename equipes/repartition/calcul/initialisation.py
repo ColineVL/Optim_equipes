@@ -1,6 +1,8 @@
 from openpyxl import load_workbook
 import math
-from modelisation import College, Equipe
+from .modelisation import College, Equipe
+import os
+from django.conf import settings
 
 
 def init(arrayColleges, nbEquipes):
@@ -15,7 +17,9 @@ def init(arrayColleges, nbEquipes):
 
 
 def readExcel():
-    wb = load_workbook("./effectifs.xlsx", data_only=True)
+    filename = "effectifs.xlsx"
+    file_path = os.path.join(settings.MEDIA_ROOT, filename)
+    wb = load_workbook(file_path, data_only=True)
     sheet = wb[wb.sheetnames[0]]
     noms = [cell.value for cell in sheet["A"][1:]]
     eleves = [int(cell.value) for cell in sheet["B"][1:]]
