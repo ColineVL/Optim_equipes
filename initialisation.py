@@ -4,7 +4,9 @@ from modelisation import College, Equipe
 
 
 def init(arrayColleges, nbEquipes):
-    arrayEquipes = [Equipe(f"Equipe_{i}", arrayColleges) for i in range(nbEquipes)]
+    arrayEquipes = [
+        Equipe(f"Equipe {i}", arrayColleges) for i in range(1, nbEquipes + 1)
+    ]
 
     nbElevesTotal = sum([col.nbEleves for col in arrayColleges])
     maxParEquipe = math.ceil(nbElevesTotal / nbEquipes)
