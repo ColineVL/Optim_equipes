@@ -3,39 +3,13 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from django.shortcuts import render
-from repartition.forms import Formulaire, UploadBookForm, UploadFileForm
 from django.core.files.storage import FileSystemStorage
-
-
-def repartitionEquipes(request):
-    if request.method == "POST":
-        # créer une instance de notre formulaire et le remplir avec les données POST
-        form = Formulaire(request.POST)
-        if form.is_valid():
-            # faire des trucs
-            print(form.cleaned_data["nbEquipes"])
-
-    else:
-        # ceci doit être une requête GET, donc créer un formulaire vide
-        form = Formulaire()
-
-    return render(request, "repartition/repartitionEquipes.html", {"form": form})
-
-
-def upload_file(request):
-    if request.method == "POST":
-        form = UploadBookForm(request.POST, request.FILES)
-        if form.is_valid():
-            # handle_uploaded_file(request.FILES["file"])
-            form.save()
-    else:
-        form = UploadBookForm()
-    return render(request, "repartition/upload.html", {"form": form})
 
 
 def simple_upload(request):
     if request.method == "POST" and request.FILES["myfile"]:
         myfile = request.FILES["myfile"]
+        nbEquipes = request.POST.get("nbEquipes")
         fs = FileSystemStorage()
         filename = fs.save(myfile.name, myfile)
         uploaded_file_url = fs.url(filename)

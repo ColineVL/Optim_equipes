@@ -18,8 +18,5 @@ from django.urls import path
 from repartition import views
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("repartition/", views.repartitionEquipes),
-    path("repartition2/", views.upload_file),
-    path("repartition4/", views.simple_upload),
+    path("uploadFile/", views.simple_upload),
 ]
