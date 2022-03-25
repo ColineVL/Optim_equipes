@@ -19,4 +19,5 @@ from repartition import views
 
 urlpatterns = [
     path("uploadFile/", views.simple_upload),
+    path("test/", views.download_file),
 ]

@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.conf import settings
+import os
 
 # Create your views here.
 from django.http import HttpResponse
@@ -19,3 +21,18 @@ def simple_upload(request):
             {"uploaded_file_url": uploaded_file_url},
         )
     return render(request, "repartition/simpleUpload.html")
+
+
+def download_file(request):
+    # fill these variables with real values
+    filename = "effectifs.xlsx"
+    file_path = os.path.join(settings.MEDIA_ROOT, filename)
+
+    if os.path.exists(file_path):
+        with open(file_path, "rb") as fh:
+            response = HttpResponse(
+                fh.read(),
+                content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+            response["Content-Disposition"] = "attachment; filename=%s" % filename
+            return response
