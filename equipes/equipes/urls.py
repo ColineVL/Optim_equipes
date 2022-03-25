@@ -20,4 +20,5 @@ from repartition import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("repartition/", views.repartitionEquipes),
+    path("repartition2/", views.upload_file),
 ]

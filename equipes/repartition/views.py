@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from django.shortcuts import render
-from repartition.forms import Formulaire
+from repartition.forms import Formulaire, UploadBookForm
 
 
 def repartitionEquipes(request):
@@ -19,3 +19,14 @@ def repartitionEquipes(request):
         form = Formulaire()
 
     return render(request, "repartition/repartitionEquipes.html", {"form": form})
+
+
+def upload_file(request):
+    if request.method == "POST":
+        form = UploadBookForm(request.POST, request.FILES)
+        if form.is_valid():
+            # handle_uploaded_file(request.FILES["file"])
+            form.save()
+    else:
+        form = UploadBookForm()
+    return render(request, "repartition/upload.html", {"form": form})
