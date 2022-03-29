@@ -15,10 +15,16 @@ def init(arrayColleges, nbEquipes):
 
 
 def readExcel():
-    wb = load_workbook("./effectifs.xlsx", data_only=True)
-    sheet = wb[wb.sheetnames[0]]
-    noms = [cell.value for cell in sheet["A"][1:]]
-    eleves = [int(cell.value) for cell in sheet["B"][1:]]
+    nomFichier = "Journée 31 mars - Sensibilisation au handicap.xlsx"
+    wb = load_workbook(nomFichier, data_only=True)
+    sheet = wb["Présents"]
+    noms = [
+        cell.value.strip()
+        for cell in sheet["A"][1:]
+        if (cell.value != None and cell.value != "TOTAL")
+    ]
+    nbNoms = len(noms)
+    eleves = [int(cell.value) for cell in sheet["D"][1 : nbNoms + 1]]
 
     assert len(noms) == len(eleves)
 
