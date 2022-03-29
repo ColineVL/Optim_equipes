@@ -1,6 +1,6 @@
 from openpyxl import load_workbook
 import math
-from modelisation import College, Equipe
+from .modelisation import College, Equipe
 
 
 def init(arrayColleges, nbEquipes):
@@ -40,5 +40,5 @@ def readExcel(option="collège"):
     arrayColleges = [
         College(noms[i], eleves[i]) for i in range(len(noms)) if eleves[i] > 0
     ]
-    arrayColleges.sort(reverse=True)
+    arrayColleges.sort()
     return arrayColleges

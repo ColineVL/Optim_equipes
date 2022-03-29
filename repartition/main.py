@@ -1,5 +1,5 @@
-from initialisation import init, readExcel
-from postTraitement import writeResultsInExcel
+from .initialisation import init, readExcel
+from .postTraitement import writeResultsInExcel
 
 """ 
 Répartir des élèves dans des équipes. 
@@ -9,10 +9,10 @@ Pas trop d'écart entre les équipes en termes de nombre d'élèves.
 
 
 def calcul(arrayColleges, arrayEquipes, maxParEquipe, nbEquipes):
-    testBlocage = 0
     # Pour chaque collège, je boucle sur les équipes pour dispatcher ses élèves
     currentIndexEquipe = 0
     for col in arrayColleges:
+        testBlocage = 0
         while col.elevesRestants > 0:
             equipe = arrayEquipes[currentIndexEquipe]
 
