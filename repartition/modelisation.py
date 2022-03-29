@@ -57,10 +57,10 @@ class College:
         self.elevesRestants = nbEleves
 
     def __repr__(self):
-        return f"{self.nom} : {self.nbEleves} élèves"
+        return f"{self.nom} : {self.nbEleves} élèves, {self.elevesRestants} restants"
 
     def __str__(self):
-        return f"{self.nom} : {self.nbEleves} élèves"
+        return f"{self.nom} : {self.nbEleves} élèves, {self.elevesRestants} restants"
 
     def __lt__(self, other):
         return self.nbEleves < other.nbEleves

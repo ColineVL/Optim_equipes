@@ -62,7 +62,7 @@ def calcul(arrayColleges, arrayEquipes, maxParEquipe, nbEquipes):
 
 def main():
     """Initialisation"""
-    arrayColleges = readExcel()
+    arrayColleges = readExcel(option="lycée")
     nbEquipes = 16
     arrayEquipes, maxParEquipe = init(arrayColleges, nbEquipes)
 

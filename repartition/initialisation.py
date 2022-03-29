@@ -14,20 +14,31 @@ def init(arrayColleges, nbEquipes):
     return arrayEquipes, maxParEquipe
 
 
-def readExcel():
+def cleanNombre(value):
+    if value == None:
+        value = 0
+    return int(value)
+
+
+def readExcel(option="collège"):
     nomFichier = "Journée 31 mars - Sensibilisation au handicap.xlsx"
     wb = load_workbook(nomFichier, data_only=True)
     sheet = wb["Présents"]
+
+    (colonneNoms, colonneNombres) = ("E", "H") if option == "lycée" else ("A", "D")
+
     noms = [
         cell.value.strip()
-        for cell in sheet["A"][1:]
+        for cell in sheet[colonneNoms][1:]
         if (cell.value != None and cell.value != "TOTAL")
     ]
     nbNoms = len(noms)
-    eleves = [int(cell.value) for cell in sheet["D"][1 : nbNoms + 1]]
+    eleves = [cleanNombre(cell.value) for cell in sheet[colonneNombres][1 : nbNoms + 1]]
 
     assert len(noms) == len(eleves)
 
-    arrayColleges = [College(noms[i], eleves[i]) for i in range(len(noms))]
+    arrayColleges = [
+        College(noms[i], eleves[i]) for i in range(len(noms)) if eleves[i] > 0
+    ]
     arrayColleges.sort(reverse=True)
     return arrayColleges
