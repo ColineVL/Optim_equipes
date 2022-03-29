@@ -12,16 +12,15 @@ class Equipe:
 
     def __init__(self, nom, arrayColleges):
         self.nom = nom
-        self.nbEleves = 0
         self.effectifs = {}
         for col in arrayColleges:
             self.effectifs[col.nom] = 0
 
     def __repr__(self):
-        return f"Equipe {self.nom} : {self.nbEleves} élèves"
+        return f"Equipe {self.nom} : {self.getNbEleves()} élèves"
 
     def __str__(self):
-        return f"Equipe {self.nom} : {self.nbEleves} élèves"
+        return f"Equipe {self.nom} : {self.getNbEleves()} élèves"
 
     def getNbEleves(self):
         return sum([value for value in self.effectifs.values()])
@@ -30,6 +29,9 @@ class Equipe:
         self.effectifs[college.nom] += nombre
 
         college.elevesRestants -= nombre
+
+    def getPlacesRestantes(self, maxParEquipe):
+        return maxParEquipe - self.getNbEleves()
 
 
 class College:
