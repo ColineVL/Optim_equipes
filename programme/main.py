@@ -6,7 +6,7 @@ Répartir les équipes dans des ateliers.
 """
 
 
-def main():
+def programmerAteliers():
     """Initialisation"""
     arrayAteliers = [
         "Cécifoot",  # Sport
@@ -48,4 +48,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    programmerAteliers()
