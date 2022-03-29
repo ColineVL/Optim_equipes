@@ -60,17 +60,16 @@ def calcul(arrayColleges, arrayEquipes, maxParEquipe, nbEquipes):
             currentIndexEquipe = (currentIndexEquipe + 1) % nbEquipes
 
 
-def main():
+def repartirLesElevesEnEquipes(nbEquipes, option):
     """Initialisation"""
-    arrayColleges = readExcel(option="lycée")
-    nbEquipes = 16
+    arrayColleges = readExcel(option)
     arrayEquipes, maxParEquipe = init(arrayColleges, nbEquipes)
 
     """Boucle de calcul"""
     calcul(arrayColleges, arrayEquipes, maxParEquipe, nbEquipes)
 
     """Affichage des résultats"""
-    writeResultsInExcel(arrayEquipes, arrayColleges)
+    writeResultsInExcel(arrayEquipes, arrayColleges, option)
 
     """Vérification"""
     # Aucune équipe ne dépasse le max
@@ -88,4 +87,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    nbEquipes = 16
+    option = "collège"
+    repartirLesElevesEnEquipes(nbEquipes, option)

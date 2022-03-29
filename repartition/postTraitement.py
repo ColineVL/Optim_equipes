@@ -2,7 +2,7 @@ from openpyxl import Workbook
 from datetime import datetime
 
 
-def writeResultsInExcel(arrayEquipes, arrayColleges):
+def writeResultsInExcel(arrayEquipes, arrayColleges, option):
     wb = Workbook()
 
     """ Première page : par équipe """
@@ -34,5 +34,5 @@ def writeResultsInExcel(arrayEquipes, arrayColleges):
 
     """ Enregistrer """
     timestamp = datetime.now().strftime("%H%M%S")
-    dest_filename = f"repartition_{timestamp}.xlsx"
+    dest_filename = f"repartition_{option}_{timestamp}.xlsx"
     wb.save(filename=dest_filename)
