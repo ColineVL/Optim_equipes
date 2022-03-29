@@ -8,21 +8,12 @@ Pas trop d'écart entre les équipes en termes de nombre d'élèves.
 """
 
 
-def main():
-    """Initialisation"""
-    arrayColleges = readExcel()
-    nbEquipes = 16
-    arrayEquipes, maxParEquipe = init(arrayColleges, nbEquipes)
-
+def calcul(arrayColleges, arrayEquipes, maxParEquipe, nbEquipes):
     testBlocage = 0
-
-    """Boucle de calcul"""
     # Pour chaque collège, je boucle sur les équipes pour dispatcher ses élèves
     currentIndexEquipe = 0
     for col in arrayColleges:
-        print(f"Collège {col}, reste {col.elevesRestants}")
         while col.elevesRestants > 0:
-            print(f"Reste {col.elevesRestants}")
             equipe = arrayEquipes[currentIndexEquipe]
 
             # Si il reste de la place dans l'équipe, on peut la remplir
@@ -67,6 +58,16 @@ def main():
 
             # On passe à l'équipe suivante
             currentIndexEquipe = (currentIndexEquipe + 1) % nbEquipes
+
+
+def main():
+    """Initialisation"""
+    arrayColleges = readExcel()
+    nbEquipes = 16
+    arrayEquipes, maxParEquipe = init(arrayColleges, nbEquipes)
+
+    """Boucle de calcul"""
+    calcul(arrayColleges, arrayEquipes, maxParEquipe, nbEquipes)
 
     """Affichage des résultats"""
     writeResultsInExcel(arrayEquipes, arrayColleges)
