@@ -29,19 +29,22 @@ class Atelier:
     ----------
     nom: string
         Nom de l'atelier
-    nbEquipes : int
-       Nombre d'équipes sur l'atelier
     theme: string
         Type d'atelier : "Sport" ou "Sensibilisation"
+    planning : array
+        Liste des matchs faits dans cet atelier, dans l'ordre
     """
 
-    def __init__(self, nom, theme, nbEquipes=2):
+    def __init__(self, nom, theme):
         self.nom = nom
-        self.nbEquipes = nbEquipes
         self.theme = theme
+        self.planning = []
 
     def __str__(self):
         return f"Atelier {self.nom}"
+
+    def addPlanning(self, match):
+        self.planning.append(match)
 
 
 class Match:

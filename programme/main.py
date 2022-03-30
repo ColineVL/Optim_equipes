@@ -31,11 +31,19 @@ def programmerAteliers(nbEquipes, nbAteliersAFaire):
     # Excel résultat
     wb = Workbook()
     ws = wb.active
+    # Par équipe
     ws.title = "Programme par équipe"
     for equipe in arrayEquipes:
         ws.append([equipe.nom])
         for match in equipe.planning:
             ws.append([f"{match} {match.equipes[0]} VS {match.equipes[1]}"])
+        ws.append([])
+    # Par atelier
+    ws = wb.create_sheet(title="Programme par atelier")
+    for atelier in arrayAteliers:
+        ws.append([f"Atelier {atelier.nom}"])
+        for match in atelier.planning:
+            ws.append([f"{match.equipes[0]} VS {match.equipes[1]}"])
         ws.append([])
 
     timestamp = datetime.now().strftime("%H%M%S")

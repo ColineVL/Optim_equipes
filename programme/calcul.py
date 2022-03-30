@@ -26,5 +26,11 @@ def tournerAteliers(nbTours, teams, arrayAteliers):
             else:
                 nextIndexAtelier = (avantLequipeEtaitA - 1) % nbAteliers
             avantJetaisA[equipe.nom] = nextIndexAtelier
-            arrayMatches[nextIndexAtelier].setTeam(equipe)
-            equipe.addPlanning(arrayMatches[nextIndexAtelier])
+
+            nouveauMatch = arrayMatches[nextIndexAtelier]
+            nouveauMatch.setTeam(equipe)
+            equipe.addPlanning(nouveauMatch)
+
+            # Si l'équipe fait partie des premières, on l'ajoute au planning de l'atelier
+            if indexEquipe < nbTeams / 2:
+                nouveauMatch.atelier.addPlanning(nouveauMatch)
