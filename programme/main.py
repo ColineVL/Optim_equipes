@@ -12,7 +12,7 @@ Répartir les équipes dans des ateliers.
 def programmerAteliers(nbEquipes, nbAteliersAFaire, option):
     """Initialisation"""
     arrayEquipes = [Equipe(f"Equipe {i}") for i in range(1, nbEquipes + 1)]
-    arrayAteliers = [
+    arrayAteliersCollege = [
         Atelier("Cécifoot 1", "Sport"),
         Atelier("Biathlon Sarbacane", "Sport"),
         Atelier("Incollables", "Sensibilisation"),
@@ -20,9 +20,19 @@ def programmerAteliers(nbEquipes, nbAteliersAFaire, option):
         Atelier("Cécifoot 2", "Sport"),
         Atelier("LSF", "Sensibilisation"),
         Atelier("Para-judo", "Sport"),
-        # Atelier("Athlétisme", "Sport"),
         Atelier("Jean Lagarde", "Sensibilisation"),
     ]
+
+    arrayAteliersLycee = [
+        Atelier("Basket fauteuil", "Sport"),
+        Atelier("LSF", "Sensibilisation"),
+        Atelier("Rugby fauteuil", "Sport"),
+        Atelier("Boccia", "Sport"),
+        Atelier("Cécifoot", "Sport"),
+        Atelier("Biathlon", "Sport"),
+    ]
+
+    arrayAteliers = arrayAteliersCollege if option == "collège" else arrayAteliersLycee
 
     """Boucle de calcul"""
     tournerAteliers(nbAteliersAFaire, arrayEquipes, arrayAteliers)

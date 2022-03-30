@@ -8,13 +8,28 @@ def tournerAteliers(nbTours, teams, arrayAteliers):
     nbTeams = len(teams)
     assert nbTeams % 2 == 0
 
+    # Un atelier est désactivé à chaque horaire si pas assez d'équipes
+    desactiver = False
+    if nbAteliers * 2 > nbTeams:
+        desactiver = True
+
     avantJetaisA = {}
+    nbDemarrer = nbAteliers
+    if desactiver:
+        nbDemarrer -= 1
     for indexEquipe, equipe in enumerate(teams):
-        avantJetaisA[equipe.nom] = indexEquipe % nbAteliers
+        avantJetaisA[equipe.nom] = indexEquipe % nbDemarrer
 
     # On tourne
     for horaire in range(1, nbTours + 1):
-        arrayMatches = [Match(atelier, horaire) for atelier in arrayAteliers]
+        if desactiver:
+            indexDesactive = horaire
+
+        arrayMatches = [
+            Match(atelier, horaire)
+            for indexAtelier, atelier in enumerate(arrayAteliers)
+            if (desactiver and indexDesactive != indexAtelier)
+        ]
 
         for indexEquipe, equipe in enumerate(teams):
             avantLequipeEtaitA = avantJetaisA[equipe.nom]
@@ -22,9 +37,9 @@ def tournerAteliers(nbTours, teams, arrayAteliers):
             # La première moitié d'équipes tourne vers la droite
             # l'autre moitié vers la gauche
             if indexEquipe < nbTeams / 2:
-                nextIndexAtelier = (avantLequipeEtaitA + 1) % nbAteliers
+                nextIndexAtelier = (avantLequipeEtaitA + 1) % len(arrayMatches)
             else:
-                nextIndexAtelier = (avantLequipeEtaitA - 1) % nbAteliers
+                nextIndexAtelier = (avantLequipeEtaitA - 1) % len(arrayMatches)
             avantJetaisA[equipe.nom] = nextIndexAtelier
 
             nouveauMatch = arrayMatches[nextIndexAtelier]
