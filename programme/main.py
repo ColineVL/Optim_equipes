@@ -25,10 +25,10 @@ def programmerAteliers(nbEquipes, nbAteliersAFaire, option):
 
     arrayAteliersLycee = [
         Atelier("Basket fauteuil", "Sport"),
+        Atelier("Cécifoot", "Sport"),
         Atelier("LSF", "Sensibilisation"),
         Atelier("Rugby fauteuil", "Sport"),
         Atelier("Boccia", "Sport"),
-        Atelier("Cécifoot", "Sport"),
         Atelier("Biathlon", "Sport"),
     ]
 
