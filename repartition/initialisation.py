@@ -25,15 +25,15 @@ def readExcel(option="collège"):
     wb = load_workbook(nomFichier, data_only=True)
     sheet = wb["Présents"]
 
-    (colonneNoms, colonneNombres) = ("E", "H") if option == "lycée" else ("A", "D")
+    (colonneNoms, colonneNombres) = ("F", "J") if option == "lycée" else ("A", "E")
 
     noms = [
         cell.value.strip()
-        for cell in sheet[colonneNoms][1:]
+        for cell in sheet[colonneNoms][3:]
         if (cell.value != None and cell.value != "TOTAL")
     ]
     nbNoms = len(noms)
-    eleves = [cleanNombre(cell.value) for cell in sheet[colonneNombres][1 : nbNoms + 1]]
+    eleves = [cleanNombre(cell.value) for cell in sheet[colonneNombres][3 : nbNoms + 3]]
 
     assert len(noms) == len(eleves)
 

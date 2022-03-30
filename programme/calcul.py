@@ -1,21 +1,30 @@
 from .modelisation import Match
 
 
-def calculUnAtelier(horaire, teams, arrayAteliers):
+def tournerAteliers(nbTours, teams, arrayAteliers):
 
+    # Initialisation
+    nbAteliers = len(arrayAteliers)
     nbTeams = len(teams)
     assert nbTeams % 2 == 0
-    for i in range(int(nbTeams / 2)):
-        equipe1 = teams[i]
-        equipe2 = teams[nbTeams - i - 1]
-        # Créer un nouveau match et l'ajouter au planning de chaque équipe
-        match = Match(arrayAteliers[0], (equipe1, equipe2), horaire)
-        equipe1.addPlanning(match)
-        equipe2.addPlanning(match)
 
-    newArray = [teams[0]]
-    newArray.append(teams[-1])
-    for i in range(1, nbTeams - 1):
-        newArray.append(teams[i])
-    print("-----------")
-    return newArray
+    avantJetaisA = {}
+    for indexEquipe, equipe in enumerate(teams):
+        avantJetaisA[equipe.nom] = indexEquipe % nbAteliers
+
+    # On tourne
+    for horaire in range(1, nbTours + 1):
+        arrayMatches = [Match(atelier, horaire) for atelier in arrayAteliers]
+
+        for indexEquipe, equipe in enumerate(teams):
+            avantLequipeEtaitA = avantJetaisA[equipe.nom]
+
+            # La première moitié d'équipes tourne vers la droite
+            # l'autre moitié vers la gauche
+            if indexEquipe < nbTeams / 2:
+                nextIndexAtelier = (avantLequipeEtaitA + 1) % nbAteliers
+            else:
+                nextIndexAtelier = (avantLequipeEtaitA - 1) % nbAteliers
+            avantJetaisA[equipe.nom] = nextIndexAtelier
+            arrayMatches[nextIndexAtelier].setTeam(equipe)
+            equipe.addPlanning(arrayMatches[nextIndexAtelier])

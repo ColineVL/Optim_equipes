@@ -1,7 +1,7 @@
 from repartition import repartirLesElevesEnEquipes
 from programme import programmerAteliers
 
-nbEquipes = 12
+nbEquipes = 16
 option = "collège"
 repartirLesElevesEnEquipes(nbEquipes, option)
 programmerAteliers(nbEquipes, 4)

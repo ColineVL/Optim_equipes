@@ -58,10 +58,13 @@ class Match:
         On a 4 matchs sur le matin
     """
 
-    def __init__(self, atelier, equipes, horaire):
+    def __init__(self, atelier, horaire):
         self.atelier = atelier
-        self.equipes = equipes
+        self.equipes = []
         self.horaire = horaire
 
     def __str__(self):
-        return f"{self.horaire}-{self.atelier.nom} : {self.equipes[0]} VS {self.equipes[1]}"
+        return f"{self.horaire}-{self.atelier.nom}"
+
+    def setTeam(self, team):
+        self.equipes.append(team)
