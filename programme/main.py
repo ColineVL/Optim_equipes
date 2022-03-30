@@ -9,7 +9,7 @@ Répartir les équipes dans des ateliers.
 """
 
 
-def programmerAteliers(nbEquipes, nbAteliersAFaire):
+def programmerAteliers(nbEquipes, nbAteliersAFaire, option):
     """Initialisation"""
     arrayEquipes = [Equipe(f"Equipe {i}") for i in range(1, nbEquipes + 1)]
     arrayAteliers = [
@@ -43,11 +43,11 @@ def programmerAteliers(nbEquipes, nbAteliersAFaire):
     for atelier in arrayAteliers:
         ws.append([f"Atelier {atelier.nom}"])
         for match in atelier.planning:
-            ws.append([f"{match.equipes[0]} VS {match.equipes[1]}"])
+            ws.append([f"{match.horaire}) {match.equipes[0]} VS {match.equipes[1]}"])
         ws.append([])
 
     timestamp = datetime.now().strftime("%H%M%S")
-    dest_filename = f"programme_{timestamp}.xlsx"
+    dest_filename = f"programme_{option}_{timestamp}.xlsx"
     wb.save(filename=dest_filename)
 
 
