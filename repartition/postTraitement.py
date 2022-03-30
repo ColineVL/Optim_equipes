@@ -17,8 +17,7 @@ def writeResultsInExcel(arrayEquipes, arrayColleges, option):
         ws.append([])
 
     """ Deuxième page : par équipe """
-    ws = wb.create_sheet(title="Répartition par collège")
-    ws.title = "Répartition par collège"
+    ws = wb.create_sheet(title=f"Répartition par {option}")
 
     for college in arrayColleges:
         # D'abord calcul python
