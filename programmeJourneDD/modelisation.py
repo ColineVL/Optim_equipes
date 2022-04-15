@@ -34,6 +34,9 @@ class Atelier:
     def __str__(self):
         return f"Atelier {self.nom}"
 
+    def __repr__(self):
+        return f"Atelier {self.nom}"
+
     def addPlanning(self, match):
         self.planning.append(match)
 
@@ -50,6 +53,8 @@ class Team:
         Deuxième équipe
     planning: array
         Liste des matchs faits par cette team, dans l'ordre
+    nom : string
+        Nom de la team
     """
 
     def __init__(self, equipe1, equipe2):
@@ -90,4 +95,4 @@ class Match:
         self.horaire = horaire
 
     def __str__(self):
-        return f"{self.horaire}-{self.atelier.nom}"
+        return f"{self.horaire}) {self.atelier.nom}"
