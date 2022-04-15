@@ -1,8 +1,8 @@
 import math as m
-from modelisation import Equipe, Team
+from modelisation import Equipe, Team, Atelier
 
 
-def init():
+def initEquipes():
     colleges = [
         "Emile Zola",
         "Hubertine Auclert",
@@ -26,6 +26,12 @@ def init():
     return teams
 
 
+def initAteliers():
+    parcours1 = [Atelier("DIY 1"), Atelier("Carbone 1"), Atelier("Tri")]
+    parcours2 = [Atelier("DIY 2"), Atelier("Carbone 2"), Atelier("Abeilles")]
+    return parcours1, parcours2
+
+
 if __name__ == "__main__":
-    teams = init()
+    teams = initEquipes()
     print(teams)
